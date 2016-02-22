@@ -1,10 +1,28 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>MTTemplateMerge</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
 </head>
 <body>
-
- This is an empty page.
+<h1 id="mttemplatemerge">MTTemplateMerge</h1>
+<h2 id="何ができるのか">何ができるのか？</h2>
+<p>２つのMT(MovableType)にログインして、それぞれのテンプレートのソースコードを比較・編集することができます。</p>
+<h2 id="使い方">使い方</h2>
+<h3 id="ログイン画面">ログイン画面</h3>
+<p>URLに、data-apiのアドレスを入力します。例えば、</p>
+<pre><code>http://example.com/mt/mt-data-api.cgi</code></pre>
+<p>など。</p>
+<p>Versionは、DATA-APIのバージョンを設定します。MT6.0.x系の場合はV1を、MT6.1以上の場合はV2を指定してください。 また、V1の場合、MT側にテンプレート用のData-API機能を追加するプラグインを導入する必要があります。 <a href="https://github.com/knight9999/MT-DataAPI-Templates">MT-DataAPI-Templates</a>をMTに組み込んで下さい。</p>
+<p>Account/Passwordは、アカウントとパスワードを入力します。</p>
+<p>Loginボタンをクリックすると、ログインできます。</p>
+<p>ログイン情報を再利用したい場合は、Nameに名前を書いてSaveボタンをクリックしてください。 画面下に、ログイン情報が保存されます。</p>
+<h3 id="license">License</h3>
+<p>All MTTemplateMerge code is Copyright 2016 by K. Naito.<br />
+MTTemplateMerge is distributed under the LGPL open source licenses.</p>
+<p>MTTemplateMerge utilizes <a href="http://www.mergely.com/">Mergely</a>, a third-party library released under the GPL, LGPL and MPL open source licenses. Also used are CodeMirror released under an MIT license and jQuery released under the MIT or GPL Verrsion 2 license.</p>
 </body>
 </html>
-
