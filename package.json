@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Compare the two MT Template files",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-typescript": "^2.13.0"
   }
 }
