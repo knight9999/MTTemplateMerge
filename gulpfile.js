@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var typescript = require('gulp-typescript');
 var concat = require('gulp-concat');
 var del = require('del');
-
+var zip = require('gulp-zip');
 
 var typescriptProject = typescript.createProject({
   target: "ES5",
@@ -17,6 +17,8 @@ gulp.task('default' , function() {
   console.log("gulp resource : Copy resource files (html,js,css,etc.) to dist directory.");
   console.log("gulp compile : Compile ts files to dist directory.");
   console.log("gulp serve : Watch resource file and ts files."); 
+  console.log("gulp clean : Clean dist directory.");
+  console.log("gulp release : Create zip file.");
   console.log("");
   console.log("===========================================");
   console.log("");
@@ -43,5 +45,9 @@ gulp.task('compile', function() {
 gulp.task('serve', function() {
   gulp.watch('src/ts/**/*.ts', [ 'compile']);  
   gulp.watch('src/res/**', [ 'resource'] );
+});
+
+gulp.task('release', ['clean','resource','compile'], function() {
+  return gulp.src('dist/*' , {base: 'dist'}).pipe( zip('MTTemplateMerge.zip') ).pipe(gulp.dest('release'));
 });
 
