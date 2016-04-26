@@ -50,6 +50,11 @@ MTTemplateMerge
     登録されているログイン情報です。クリックすると、その内容が反映されます。
 
 
+### ソースコード
+
+[https://github.com/knight9999/MTTemplateMerge](https://github.com/knight9999/MTTemplateMerge)
+
+
 ### License
 
 All MTTemplateMerge code is Copyright 2016 by K. Naito.   
