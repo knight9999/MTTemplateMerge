@@ -1,0 +1,8 @@
+{
+  "name": "MTTemplateMerge",
+  "version": "1.0.0",
+  "description": "Compare the two MT Template files",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
