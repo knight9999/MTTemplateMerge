@@ -108,6 +108,10 @@ class ComparePage {
           
           loaded : function() {
               modal.remove();
+              var lhs_cm = $('#compare_result').mergely('cm','lhs');
+              lhs_cm.refresh();
+              var rhs_cm = $('#compare_result').mergely('cm','rhs');
+              rhs_cm.refresh();
           },
           lhs: function(setValue) {
             setValue( self.leftText ); //比較元テキスト
@@ -117,7 +121,6 @@ class ComparePage {
           },
           autoresize: false
         });
-        self.resize();
         var lhs_cm = $('#compare_result').mergely('cm','lhs');
         lhs_cm.on('change',function() {
           var newText = $('#compare_result').mergely('get','lhs');
@@ -138,8 +141,9 @@ class ComparePage {
             $(".btn_save_right").attr("disabled","disabled");
           }          
         });
+        self.resize();
         
-      }
+      } 
     }
 
     public loadError(modal) : void {
