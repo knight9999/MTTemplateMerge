@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "noLib": false,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "formatCodeOptions": {
+    "indentSize": 4,
+    "tabSize": 4,
+    "newLineCharacter": "\r\n",
+    "convertTabsToSpaces": true,
+    "insertSpaceAfterCommaDelimiter": true,
+    "insertSpaceAfterSemicolonInForStatements": true,
+    "insertSpaceBeforeAndAfterBinaryOperators": true,
+    "insertSpaceAfterKeywordsInControlFlowStatements": true,
+    "insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+    "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+    "placeOpenBraceOnNewLineForFunctions": true,
+    "placeOpenBraceOnNewLineForControlBlocks": true
+  },
+  "compileOnSave": false,
+  "filesGlob": [
+    "./**/*.ts",
+    "!./node_modules/**/*.ts",
+    "!./bower_components/**/*.ts",
+    "!./typings/**/*.ts"
+  ],
+  "files": [
+    "./chrome-browser.d.ts",
+    "./chrome-runtime.d.ts",
+    "./chrome-storage.d.ts",
+    "./ComparePage.ts",
+    "./DataAPIPack.ts",
+    "./IPanel.ts",
+    "./ListTemplatesPanel.ts",
+    "./LoginPanel.ts",
+    "./LoginSetting.ts",
+    "./Main.ts",
+    "./mergely.d.ts",
+    "./Modal.ts",
+    "./mt-data-api.d.ts",
+    "./SelectBlogPanel.ts",
+    "./SeparatePage.ts",
+    "./system.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}
