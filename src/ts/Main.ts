@@ -8,9 +8,13 @@
 
 System.setStartFunction(function() {
 
-  var manifest = chrome.runtime.getManifest();
-  var version = manifest.version;
+  var version = "?.?.?";
 
+  if (chrome && chrome.runtime) {
+    var manifest = chrome.runtime.getManifest();
+    version = manifest.version;
+  }
+  
   $("#version").html("Ver. "+version);
 
   $("#help").click( function() {

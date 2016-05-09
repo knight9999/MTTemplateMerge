@@ -18,42 +18,42 @@ class ComparePage {
 
 	constructor() {
 	}
-	
+
 	public showPage() : void {
 		var self = this;
-		
-		$("#main").load("pages/compare.html", {} , () => {
-            new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) { 
+
+		System.loadTemplate("#main","pages/compare.html", () => {
+            new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) {
                 $('#comparePage')[0].appendChild( modal.div );
 		        self.width = $("#compare_result").width();
 		        self.height = $("#compare_result").height();
-		    
+
 		        console.log("WIDTH : " + self.width);
 		        console.log("HEIGHT : "+self.height);
 		        self.leftJson = null;
 		        self.rightJson = null;
                 self.leftText = null;
                 self.rightText = null;
-            
+
 			    $(".back_form").submit( function() {
 			      console.log("Back!");
 			      self.listeners["back"]( { } );
 			      return false;
 			    });
-			
+
 			    $(".save_left").submit( function() {
-                  console.log("SaveLeft");			
+                  console.log("SaveLeft");
                   $(".btn_save_left").attr("disabled","disabled");
                   var newText = $('#compare_result').mergely('get','lhs');
                   self.leftJson["text"] = newText;
-                  self.leftApiPack.updateTemplate(self.leftSiteId,self.leftItem['id'],self.leftJson , 
+                  self.leftApiPack.updateTemplate(self.leftSiteId,self.leftItem['id'],self.leftJson ,
                     function(json) {
                       self.leftText = newText;
                     }
                   );
                   return false;
 			    });
-			
+
 			    $(".save_right").submit( function() {
 			      console.log("SaveRight");
                   $(".btn_save_right").attr("disabled","disabled");
@@ -66,7 +66,7 @@ class ComparePage {
                   );
                   return false;
 			    });
-		
+
                 self.leftApiPack.template( self.leftSiteId , self.leftItem["id"] , function(response) {
                 	if (!response.error) {
                         self.leftJson = response;
@@ -88,24 +88,24 @@ class ComparePage {
                     	self.loadError(modal);
                     }
                 });
-            
-            		
-		
+
+
+
 		    });
         });
-	} 
+	}
 
     public loadFinish(modal) : void {
       var self = this;
       if (this.leftText != null && this.rightText != null) {
-        $('#compare_result').mergely( {  
+        $('#compare_result').mergely( {
           cmsettings: {
             readonly: false,
             lineNumbers: true
           },
           editor_width : (self.width - 50)/2 + "px",
           editor_height : self.height + "px",
-          
+
           loaded : function() {
               modal.remove();
               var lhs_cm = $('#compare_result').mergely('cm','lhs');
@@ -139,23 +139,23 @@ class ComparePage {
             $(".btn_save_right").removeAttr("disabled");
           } else {
             $(".btn_save_right").attr("disabled","disabled");
-          }          
+          }
         });
         self.resize();
-        
-      } 
+
+      }
     }
 
     public loadError(modal) : void {
         modal.showCloseButton();
         modal.setTitle( "Error" );
 	    modal.setMessage( 'Load data error' );
-	
+
 	}
 	public addEventListener( name : string , action : ( params : { } ) => void ) : void {
 		this.listeners[name] = action;
 	}
-	
+
 	public resize() :void {
         var self = this;
         var je = $('#compare_result');
@@ -168,26 +168,26 @@ class ComparePage {
             var height = self.height + "px";
 
             var list = je.find("div");
-            
+
            	var je2 = list.eq(0);
             je2.css('height', height);
             je2.find("canvas").attr("height", height );
-            
+
             var je3 = je2.next();
             je3.css('width', width );
             je3.css('height',height);
-            
+
             var je4 = je3.next();
             je4.css('height',height);
             je4.find("canvas").attr("height",height);
-            
+
             var je5 = je4.next();
             je5.css('width',width);
             je5.css('height',height);
-            
+
             var je6 = je5.next();
             je6.css('height' , height);
-            
+
             je.mergely('options', { width: width, height: height } );
 			je.mergely('resize');
 		  }

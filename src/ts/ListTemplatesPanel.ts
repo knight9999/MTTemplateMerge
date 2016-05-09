@@ -16,9 +16,9 @@ class ListTemplatesPanel implements IPanel {
 		this.selector = selector;
 		this.apiPack = apiPack;
 	}
-	
+
 	public showPanel() : void {
-		$( this.selector ) .load("pages/list_templates.html",{},
+		System.loadTemplate( this.selector, "pages/list_templates.html",
 			this.createPage()
 		);
 	}
@@ -30,7 +30,7 @@ class ListTemplatesPanel implements IPanel {
 //    public setNextPanel( movePanel : (name:string, params : { [key: string] : any }) => void) : void {
 //		this.movePanel = movePanel;
 //	}
-	
+
 	public createPage() : ()=>void {
 		var panelClass = this.selector;
 		return () => {
@@ -41,7 +41,7 @@ class ListTemplatesPanel implements IPanel {
             return false;
           });
 //		self.apiPack.api.donutListTemplates( self.siteId , function(response) {
-          new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) { 
+          new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) {
             $(self.selector)[0].appendChild( modal.div );
 	        self.apiPack.listTemplates( self.siteId , function(response)  {
 	          if (response.error) {
@@ -64,7 +64,7 @@ class ListTemplatesPanel implements IPanel {
 				var text2 = document.createTextNode(hash["name"]);
 				span2.style.cssText = "cursor : pointer;";
 				span2.appendChild( text2 );
-				
+
 				li.appendChild(span1);
 				li.appendChild(span2);
 				(function() {
