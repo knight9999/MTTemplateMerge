@@ -18,10 +18,14 @@ gulp.task('default' , function() {
   console.log("");
   console.log("gulp compile_chrome : Compile ts files to dist/chrome directory.");
   console.log("gulp copy_chrome : Copy resource files (html,js,css,etc.) to dist/chrome directory.");
+  console.log("gulp build_chrome : Compile + Copy");
   console.log("gulp serve_chrome : Watch resource file and ts files.");
   console.log("gulp clean_chrome : Clean dist directory.");
   console.log("gulp release_chrome : Create zip file.");
   console.log("");
+  console.log("gulp compile_windows : Compile ts files to dist/windows directory.");
+  console.log("gulp copy_windows : Copy resource files (html,js,css,etc.) to dist/windows directory.");
+  console.log("gulp build_windows : Compile + Copy");
   console.log("===========================================");
   console.log("");
 } );
@@ -66,8 +70,10 @@ gulp.task('compile_windows', function() {
       .pipe(gulp.dest('dist/windows/js/'));
 });
 
-gulp.task('build_windows', ['copy_windows','compile_windows'], function() {
+gulp.task('build_chrome', ['copy_chrome', 'compile_chrome'], function() {
+});
 
+gulp.task('build_windows', ['copy_windows','compile_windows'], function() {
 });
 
 gulp.task('serve_chrome', function() {

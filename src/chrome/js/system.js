@@ -8,13 +8,13 @@
   };
 
   System.setItem = function(name,value,callback) {
-    var hash : {} = {};
-    hash[name] = args;
+    var hash = {};
+    hash[name] = value;
     chrome.storage.local.set( hash , callback );
   };
 
   System.getItem = function(name,callback) {
-    chrome.storagelocal.get( name , function(result) {
+    chrome.storage.local.get( name , function(result) {
       callback( result[name] )
     });
   };
