@@ -1,25 +1,25 @@
 
 class LoginPanel implements IPanel {
 
-	selector : string;
-	apiPack : DataAPIPack;
-	setting : LoginSetting;
-	listeners : { [key : string ] :  ( params : { } ) => void } = {};
+  selector : string;
+  apiPack : DataAPIPack;
+  setting : LoginSetting;
+  listeners : { [key : string ] :  ( params : { } ) => void } = {};
 
-	constructor(selector:string,apiPack:DataAPIPack) {
-		this.selector = selector;
-		this.apiPack = apiPack;
-	}
+  constructor(selector: string, apiPack: DataAPIPack) {
+    this.selector = selector;
+    this.apiPack = apiPack;
+  }
 
-	public showPanel() : void {
-		System.loadTemplate( this.selector, "pages/login.html",
-			this.createLoginFunc()
-		);
-	}
+  public showPanel() : void {
+    System.loadTemplate( this.selector, "pages/login.html",
+      this.createLoginFunc()
+    );
+  }
 
-	public addEventListener( name : string , action : ( params : { } ) => void ) : void {
-		this.listeners[name] = action;
-	}
+  public addEventListener( name : string , action : ( params : { } ) => void ) : void {
+    this.listeners[name] = action;
+  }
 
 	public createLoginFunc() : ()=>void {
 		var panelClass = this.selector;

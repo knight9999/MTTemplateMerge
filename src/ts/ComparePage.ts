@@ -6,6 +6,8 @@ class ComparePage {
     rightApiPack : DataAPIPack;
     leftSiteId : number;
     rightSiteId : number;
+    leftSite : {} = null;
+    rightSite : {} = null;
     leftItem : {} = null;
     rightItem : {} = null;
     leftJson : {} = null;
@@ -29,8 +31,6 @@ class ComparePage {
         self.width = $("#compare_result").width();
         self.height = $("#compare_result").height();
 
-        console.log("WIDTH : " + self.width);
-        console.log("HEIGHT : " + self.height);
         self.leftJson = null;
         self.rightJson = null;
         self.leftText = null;
@@ -89,6 +89,15 @@ class ComparePage {
             self.loadError(modal);
           }
         });
+
+        $('#comparePage .left_info').html(
+          self.leftSiteId + ":" + self.leftSite["name"] + "<br>" +
+          self.leftItem["id"] + ":" + self.leftItem["name"]
+        );
+        $('#comparePage .right_info').html(
+          self.rightSiteId + ":" + self.rightSite["name"] + "<br>" +
+          self.rightItem["id"] + ":" + self.rightItem["name"]
+        );
 
       });
     });

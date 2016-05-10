@@ -10,25 +10,25 @@ System.setStartFunction(function() {
 
   var version = System.getVersion();
 
-  $("#version").html("Ver. "+version);
+  $("#version").html("Ver. " + version);
 
   $("#help").click( function() {
-  	System.openUrl( "http://knight9999.github.io/MTTemplateMerge/" );
+    System.openUrl( "http://knight9999.github.io/MTTemplateMerge/" );
   } );
 
   var apiPack1 = new DataAPIPack();
   var apiPack2 = new DataAPIPack();
 
-  var leftLoginPanel : LoginPanel = new LoginPanel("#left_panel",apiPack1);
-  var rightLoginPanel : LoginPanel = new LoginPanel("#right_panel",apiPack2);
+  var leftLoginPanel : LoginPanel = new LoginPanel("#left_panel", apiPack1);
+  var rightLoginPanel : LoginPanel = new LoginPanel("#right_panel", apiPack2);
 
-  var leftSelectBlogPanel : SelectBlogPanel = new SelectBlogPanel("#left_panel",apiPack1);
-  var rightSelectBlogPanel : SelectBlogPanel = new SelectBlogPanel("#right_panel",apiPack2);
+  var leftSelectBlogPanel : SelectBlogPanel = new SelectBlogPanel("#left_panel", apiPack1);
+  var rightSelectBlogPanel : SelectBlogPanel = new SelectBlogPanel("#right_panel", apiPack2);
 
-  var leftListTemplatesPanel : ListTemplatesPanel = new ListTemplatesPanel("#left_panel",apiPack1);
-  var rightListTemplatesPanel : ListTemplatesPanel = new ListTemplatesPanel("#right_panel",apiPack2);
+  var leftListTemplatesPanel : ListTemplatesPanel = new ListTemplatesPanel("#left_panel", apiPack1);
+  var rightListTemplatesPanel : ListTemplatesPanel = new ListTemplatesPanel("#right_panel", apiPack2);
 
-  var separatePage : SeparatePage = new SeparatePage(leftLoginPanel,rightLoginPanel);
+  var separatePage : SeparatePage = new SeparatePage(leftLoginPanel, rightLoginPanel);
   var comparePage : ComparePage = new ComparePage();
   comparePage.leftApiPack = apiPack1;
   comparePage.rightApiPack = apiPack2;
@@ -99,36 +99,40 @@ System.setStartFunction(function() {
   leftListTemplatesPanel.addEventListener( "back" , (params : { [key: string] : any }) => {
     separatePage.disableBtnCompare();
     removeComponent("#left_panel .component_panel");
-    attachComponent("#left_panel",leftSelectBlogDom);
+    attachComponent("#left_panel", leftSelectBlogDom);
   } );
 
   rightListTemplatesPanel.addEventListener( "back" , (params : { [key: string] : any }) => {
-  	separatePage.disableBtnCompare();
+    separatePage.disableBtnCompare();
     removeComponent("#right_panel .component_panel");
-    attachComponent("#right_panel",rightSelectBlogDom);
+    attachComponent("#right_panel", rightSelectBlogDom);
   } );
 
   leftListTemplatesPanel.addEventListener( "selectTemplate" , (params : { [key: string] : any} ) => {
+    separatePage.leftSite = params["site"];
     separatePage.leftSiteId = params["siteId"];
-  	separatePage.leftItem = params["item"];
-  	separatePage.check();
+    separatePage.leftItem = params["item"];
+    separatePage.check();
   } );
 
   rightListTemplatesPanel.addEventListener( "selectTemplate" , (params : { [key: string] : any} ) => {
+    separatePage.rightSite = params["site"];
     separatePage.rightSiteId = params["siteId"];
     separatePage.rightItem = params["item"];
-  	separatePage.check();
+    separatePage.check();
   } );
 
   var prevPage = null;
 
   separatePage.addEventListener( "compare" , (params : { } ) => {
-	prevPage = removeComponent(".page");
-	comparePage.leftSiteId = separatePage.leftSiteId;
-	comparePage.rightSiteId = separatePage.rightSiteId;
-	comparePage.leftItem = separatePage.leftItem;
-	comparePage.rightItem = separatePage.rightItem;
-  	comparePage.showPage();
+    prevPage = removeComponent(".page");
+    comparePage.leftSite = separatePage.leftSite;
+    comparePage.rightSite = separatePage.rightSite;
+    comparePage.leftSiteId = separatePage.leftSiteId;
+    comparePage.rightSiteId = separatePage.rightSiteId;
+    comparePage.leftItem = separatePage.leftItem;
+    comparePage.rightItem = separatePage.rightItem;
+    comparePage.showPage();
   } );
 
   comparePage.addEventListener( "back" , (params : { } ) => {
@@ -140,7 +144,7 @@ System.setStartFunction(function() {
 
   jQuery(window).resize(
     function () {
-    	comparePage.resize();
+      comparePage.resize();
     }
   );
 
