@@ -5,14 +5,14 @@ class LoginPanel implements IPanel {
 	apiPack : DataAPIPack;
 	setting : LoginSetting;
 	listeners : { [key : string ] :  ( params : { } ) => void } = {};
-	
+
 	constructor(selector:string,apiPack:DataAPIPack) {
 		this.selector = selector;
 		this.apiPack = apiPack;
 	}
 
 	public showPanel() : void {
-		$( this.selector ).load("pages/login.html",{},
+		System.loadTemplate( this.selector, "pages/login.html",
 			this.createLoginFunc()
 		);
 	}
@@ -29,7 +29,7 @@ class LoginPanel implements IPanel {
 			$(panelClass + " .login_form").submit( function() {
 
 				var form = this;
-				new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) { 
+				new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) {
 					$(self.selector)[0].appendChild( modal.div );
 
 	                self.setting = new LoginSetting();
@@ -38,7 +38,7 @@ class LoginPanel implements IPanel {
 	                self.setting.account = form.elements.account.value;
 	                self.setting.password = form.elements.password.value;
 	                self.setting.version = form.elements.version.value;
-	                
+
                     self.apiPack.version = self.setting.version;
                     try {
                     self.apiPack.setAPI( self.setting.url );
@@ -70,12 +70,12 @@ class LoginPanel implements IPanel {
 	                  modal.setMessage( "Invalid data" );
 	                }
 	                console.log( "SUBMIT" + self.selector + " " + form.elements.name.value);
-                	
+
                 });
-				
+
 				return false;
 			});
-			
+
 			$(panelClass + " .saveButton").click( function() {
               var $form = $(panelClass + " .login_form");
               var setting : {}  = {} ;
@@ -85,7 +85,7 @@ class LoginPanel implements IPanel {
 			  setting["account"] = $form.find("[name=account]").val();
 			  setting["password"] = $form.find("[name=password]").val();
 			  setting["version"] = $form.find("[name=version]").val();
-			  
+
 			  self.loadSettings( function( args : {} ) {
 			    if (args == null) {
 			      args = {};
@@ -95,12 +95,12 @@ class LoginPanel implements IPanel {
 			      console.log("save ok");
 			      self.showSettings(null);
 			    });
-			  
+
 			  } );
 			  console.log("save is clicked , " + setting["account"] + ", " + setting["url"] );
 			  return false;
 			});
-			
+
 			$(panelClass + " .deleteButton").click( function() {
 			  console.log("delete is clicked");
               var $form = $(panelClass + " .login_form");
@@ -115,34 +115,34 @@ class LoginPanel implements IPanel {
                   console.log("delete ok");
                   self.showSettings(null);
                 });
-              
+
               } );
 			  return false;
 			});
 		};
 	}
-	
+
 	public loadSettings( callback : ( args : {} ) => void ) : void {
         var panelClass = this.selector;
         var name = panelClass + ".list";
-        chrome.storage.local.get( name , function(result:any) { 
-          callback( result[name] )
-         });	
-	} 
-	
-	public saveSettings( args : {} , callback : () => void ) : void {
+				System.getItem(name, function (result) {
+            callback(result);
+        });
+	}
+
+  public saveSettings( args : {} , callback : () => void ) : void {
         var panelClass = this.selector;
         var name = panelClass + ".list";
         var hash : {} = {};
         hash[name] = args;
-        chrome.storage.local.set( hash , callback );
-	}
+        System.setItem(name, args, callback);
+  }
 
     public showSettings( callback : () => void ) : void {
         var panelClass = this.selector;
-        $(panelClass + " .settings").empty();
+        $(panelClass + " .saved_settings .values").empty();
         var $form = $(panelClass + " .login_form");
-        var self = this;        
+        var self = this;
         this.loadSettings( function( args : {} ) {
             for( var key in args ) {
                 var $div = $("<div/>");
@@ -171,7 +171,7 @@ class LoginPanel implements IPanel {
               callback();
             }
         });
-    
-    }	
-    
+
+    }
+
 }

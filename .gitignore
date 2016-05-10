@@ -1,6 +1,8 @@
 .project
-dist/*
+dist/chrome
+dist/windows
 release/*
 !.gitkeep
 node_modules/
+gulp_config.json
 
