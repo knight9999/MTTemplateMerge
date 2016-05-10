@@ -50,15 +50,15 @@ class SelectBlogPanel implements IPanel {
                     modal.remove();
 //				 	$(panelClass + " .result").html( "api ok" );
 
-					var $blogListBox = $(panelClass + " .form-blog-list");
-					$blogListBox.children().remove();
-	                $blogListBox.append($('<option>').html('Select blog...').val("null"));
-	                self.list = {};
-	                response.items.forEach( function(x, i) {
-	                	self.list[x.id] = { "name" : x.name };
-	        			$blogListBox.append($('<option>').html(x.name).val(x.id));
-	                });
-					$blogListBox.removeAttr('disabled');
+						var $blogListBox = $(panelClass + " .form-blog-list");
+						$blogListBox.children().remove();
+	          $blogListBox.append($('<option>').html('Select blog...').val("null"));
+	          self.list = {};
+	          response.items.forEach( function(x, i) {
+	          	self.list[x.id] = { "name" : x.name };
+	        		$blogListBox.append($('<option>').html(x.name).val(x.id));
+	          });
+						$blogListBox.removeAttr('disabled');
 				  }
 				});
 			});

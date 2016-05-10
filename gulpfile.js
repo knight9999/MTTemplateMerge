@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var del = require('del');
 var zip = require('gulp-zip');
 var merge = require('merge-stream');
+var fs = require('fs');
 
 var typescriptProject = typescript.createProject({
   target: "ES5",
@@ -24,14 +25,6 @@ gulp.task('default' , function() {
   console.log("===========================================");
   console.log("");
 } );
-
-// gulp compile_chrome
-// gulp copy_chrome
-// gulp clean_chrome
-// gulp build_chrome (compile + copy)
-// gulp release_chrome
-
-
 
 
 gulp.task ('clean_chrome', function() {
@@ -73,12 +66,26 @@ gulp.task('compile_windows', function() {
       .pipe(gulp.dest('dist/windows/js/'));
 });
 
+gulp.task('build_windows', ['copy_windows','compile_windows'], function() {
+
+});
+
 gulp.task('serve_chrome', function() {
   gulp.watch('src/ts/**/*.ts', [ 'compile_chrome']);
   gulp.watch('src/common/**', [ 'copy_chrome'] );
   gulp.watch('src/chrome/**', [ 'copy_chrome'] );
 });
 
-gulp.task('releas_chrome', ['clean_chrome','copy_chrome','compile_chrome'], function() {
+gulp.task('release_chrome', ['clean_chrome','copy_chrome','compile_chrome'], function() {
   return gulp.src('dist/chrome/*' , {base: 'dist/chrome'}).pipe( zip('MTTemplateMerge.zip') ).pipe(gulp.dest('release'));
+});
+
+
+gulp.task('deploy_windows', function() {
+  var config = fs.readFileSync("gulp_config.json","utf8");
+//  console.log( config );
+  var json = JSON.parse(config);
+  var windows_deploy_path = json.windows_deploy_path;
+//  console.log(windows_deploy_path);
+  return gulp.src( ['dist/windows/**'] , { base: 'dist/windows'} ).pipe( gulp.dest( windows_deploy_path ) );
 });

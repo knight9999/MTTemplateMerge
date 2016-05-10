@@ -42,13 +42,25 @@
   };
 
   System.openUrl = function(url) {
+    var uri = new Windows.Foundation.Uri(url);
+    Windows.System.Launcher.launchUriAsync(uri).then(
+      function (success) {
 
+      }
+    );
   };
 
   System.setStartFunction = function(func) {
     document.addEventListener("deviceready",func,false);
   }
 
+  System.getVersion = function() {
+    var package = Windows.ApplicationModel.Package.current;
+    var packageId = package.id;
+    var version = packageId.version;
+    return version.major + "." + version.minor + "." +
+           version.build + "." + version.revision;
+  }
 
   window.System = System;
 })();

@@ -27,6 +27,11 @@
     $(document).ready(func);
   }
 
+  System.getVersion = function() {
+    var manifest = chrome.runtime.getManifest();
+    version = manifest.version;
+    return version;
+  }
 
   window.System = System;
 })();
