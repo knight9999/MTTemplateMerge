@@ -83,7 +83,7 @@ gulp.task('serve_chrome', function() {
 });
 
 gulp.task('release_chrome', ['clean_chrome','copy_chrome','compile_chrome'], function() {
-  return gulp.src('dist/chrome/*' , {base: 'dist/chrome'}).pipe( zip('MTTemplateMerge.zip') ).pipe(gulp.dest('release'));
+  return gulp.src('dist/chrome/**' , {base: 'dist/chrome'}).pipe( zip('MTTemplateMerge.zip') ).pipe(gulp.dest('release'));
 });
 
 
