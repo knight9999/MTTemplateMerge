@@ -27,7 +27,7 @@ class DataAPIPack {
 		if (this.version == "v1") {
 		    this.api.donutListTemplates( siteId , callback );
 		} else {
-			this.api.listTemplates( siteId , function(response) {
+			this.api.listTemplates( siteId , { limit : 200  } ,function(response) {
 				var items = [];
 				for (var i=0;i<response.items.length;i++) {
 					var ritem = response.items[i];
