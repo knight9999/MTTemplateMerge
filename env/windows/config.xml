@@ -26,5 +26,6 @@
     <platform name="windows">
         <preference name="windows-target-version" value="10.0" />
         <preference name="Orientation" value="landscape" />
+        <preference name="WindowsDefaultUriPrefix" value="ms-appx://" />
     </platform>
 </widget>
