@@ -41,7 +41,7 @@ class ListTemplatesPanel implements IPanel {
         return false;
       });
 //		self.apiPack.api.donutListTemplates( self.siteId , function(response) {
-      new Modal("Loading", "Please wait ... <img src=\"/img/spinner.gif\">", function(modal) {
+      new Modal("Loading", "Please wait ... <div class=\"loading\"></div>", function(modal) {
         $(self.selector)[0].appendChild( modal.div );
         self.apiPack.listTemplates( self.siteId , function(response)  {
           if (response.error) {

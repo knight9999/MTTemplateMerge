@@ -27,7 +27,7 @@ class SelectBlogPanel implements IPanel {
 		var panelClass = this.selector;
 		return () => {
 			var self = this;
-			new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) {
+			new Modal("Loading","Please wait ... <div class=\"loading\"></div>", function(modal) {
                 $(self.selector)[0].appendChild( modal.div );
 //			    self.apiPack.api.listBlogsForUser('me', function(response) {
                 self.apiPack.listBlogs( function(response) {

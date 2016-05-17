@@ -26,7 +26,7 @@ class ComparePage {
     var self = this;
 
     System.loadTemplate("#main", "pages/compare.html", () => {
-      new Modal("Loading", "Please wait ... <img src=\"/img/spinner.gif\">", function(modal) {
+      new Modal("Loading", "Please wait ... <div class=\"loading\"></div>", function(modal) {
         $('#comparePage')[0].appendChild( modal.div );
         self.width = $("#compare_result").width();
         self.height = $("#compare_result").height();

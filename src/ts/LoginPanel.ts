@@ -29,7 +29,7 @@ class LoginPanel implements IPanel {
 			$(panelClass + " .login_form").submit( function() {
 
 				var form = this;
-				new Modal("Loading","Please wait ... <img src=\"/img/spinner.gif\">", function(modal) {
+				new Modal("Loading","Please wait ... <div class=\"loading\"></div>", function(modal) {
 					$(self.selector)[0].appendChild( modal.div );
 
 	                self.setting = new LoginSetting();
