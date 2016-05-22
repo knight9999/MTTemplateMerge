@@ -27,6 +27,7 @@
         <preference name="windows-target-version" value="10.0" />
         <preference name="Orientation" value="landscape" />
         <preference name="WindowsDefaultUriPrefix" value="ms-appx://" />
+        <preference name="WindowsStoreIdentityName" value="info.nfuture.MTTemplateMerge"/>
+        <preference name="Windows.Desktop-MinVersion" value="10.0.10240.0" />
     </platform>
-    <preference name="WindowsStoreIdentityName" value="info.nfuture.MTTemplateMerge"/>
 </widget>
